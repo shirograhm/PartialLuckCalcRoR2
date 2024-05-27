@@ -25,12 +25,13 @@ namespace PartialLuckPlugin
 			Log.Debug($"Using partial roll calculation for a proc with {percent:F2}% chance.");
 			if (percent <= 0f) return false;
 
-			float percentWithLuck = GetChanceAfterLuck(percent, luck);
+			float basePercent = percent / 100f;
+			float percentWithLuck = GetChanceAfterLuck(basePercent, luck);
 			float randomRoll = Random.Range(0f, 1f);
 
 			if (randomRoll <= percentWithLuck)
 			{
-				if (randomRoll > percent && master)
+				if (randomRoll > basePercent && master)
 				{
 					GameObject bodyObject = master.GetBodyObject();
 					if (bodyObject)
@@ -47,10 +48,8 @@ namespace PartialLuckPlugin
 			return false;
 		}
 
-		private static float GetChanceAfterLuck(float percent, float luckIn)
+		private static float GetChanceAfterLuck(float percent, float luck)
 		{
-			int luck = Mathf.CeilToInt(luckIn);
-
 			if (luck > 0)
 				return 1f - Mathf.Pow(1f - percent, luck + 1);
 			if (luck < 0)

@@ -26,7 +26,7 @@ namespace PartialLuckPlugin
 			if (percent <= 0f) return false;
 
 			float basePercent = percent / 100f;
-			float percentWithLuck = GetChanceAfterLuck(basePercent, luck);
+			float percentWithLuck = PartialUtils.GetChanceAfterLuck(basePercent, luck);
 			float randomRoll = Random.Range(0f, 1f);
 
 			if (randomRoll <= percentWithLuck)
@@ -46,16 +46,6 @@ namespace PartialLuckPlugin
 				return true;
 			}
 			return false;
-		}
-
-		private static float GetChanceAfterLuck(float percent, float luck)
-		{
-			if (luck > 0)
-				return 1f - Mathf.Pow(1f - percent, luck + 1);
-			if (luck < 0)
-				return Mathf.Pow(percent, Mathf.Abs(luck) + 1);
-
-			return percent;
 		}
 	}
 }

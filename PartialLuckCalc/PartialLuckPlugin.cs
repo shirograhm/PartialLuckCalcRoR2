@@ -1,5 +1,7 @@
 using BepInEx;
 using R2API;
+using R2API.Networking;
+using RoR2;
 
 namespace PartialLuckPlugin
 {
@@ -27,6 +29,14 @@ namespace PartialLuckPlugin
             Log.Init(Logger);
             
             partial = new PartialLuckHook();
+
+            ItemCatalog.availability.CallWhenAvailable(LookingGlassIntegration.Init);
+            NetworkingAPI.RegisterMessageType<PartialLuckTracker.Sync>();
+
+            CharacterMaster.onStartGlobal += (obj) =>
+            {
+                obj?.gameObject.AddComponent<PartialLuckTracker>();
+            };
 
             Log.Message("Finished initializations.");
         }

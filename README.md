@@ -24,7 +24,7 @@ The equation below is what follows for continuous negative values of luck.
 Now lets say you have **0.5 luck**:  
 `chance of success ⇒ 1 - (1 - 0.3)^(0.5 + 1) ⇒ 1 - (0.7)^(1.5) ⇒ 1 - 0.586 ⇒ 0.414 ⇒ 41.4% chance`  
 And similarly, with **-0.5 luck**:  
-`chance of success ⇒ (0.3)^(abs(-0.5) + 1) ⇒ (0.3)^(1.5) ⇒ .14 ⇒ 16.4% chance`  
+`chance of success ⇒ (0.3)^(abs(-0.5) + 1) ⇒ (0.3)^(1.5) ⇒ .164 ⇒ 16.4% chance`  
 ###### Example Scaling Table
 <table>
   <tr>

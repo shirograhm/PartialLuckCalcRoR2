@@ -7,11 +7,9 @@ namespace PartialLuckPlugin
 {
     // Dependencies
     [BepInDependency(ItemAPI.PluginGUID)]
-    [BepInDependency(LanguageAPI.PluginGUID)]
+    [BepInDependency("com.droppod.lookingglass", BepInDependency.DependencyFlags.SoftDependency)]
 
-    // This attribute is required, and lists metadata for your plugin.
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
-
     public class PartialLuckPlugin : BaseUnityPlugin
     {
         public const string PluginGUID = PluginAuthor + "." + PluginName;
@@ -36,6 +34,18 @@ namespace PartialLuckPlugin
             CharacterMaster.onStartGlobal += (obj) =>
             {
                 obj?.gameObject.AddComponent<PartialLuckTracker>();
+            };
+
+            RecalculateStatsAPI.GetStatCoefficients += (sender, args) =>
+            {
+                if (sender.master && sender.master.gameObject)
+                {
+                    PartialLuckTracker tracker = sender.master.gameObject.GetComponent<PartialLuckTracker>();
+                    if (tracker && tracker.PartialLuck != 0)
+                    {
+                        tracker.PartialLuck = 0;
+                    }
+                }
             };
 
             Log.Message("Finished initializations.");

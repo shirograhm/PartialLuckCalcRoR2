@@ -22,7 +22,6 @@ namespace PartialLuckPlugin
 
         internal static bool CheckPartialRoll(float percent, float luck, CharacterMaster master)
         {
-			Log.Debug($"Using partial roll calculation for a proc with {percent:F2}% chance.");
 			if (percent <= 0f) return false;
 
 			float basePercent = percent / 100f;

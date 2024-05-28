@@ -2,12 +2,10 @@
 A library/dependency for [TooManyItems](https://thunderstore.io/package/shirograhm/TooManyItems/). Adds the ability for survivors to have partial luck.  
 Supports integration with [LookingGlass](https://thunderstore.io/package/DropPod/LookingGlass/).  
 
-<br/>
 ### Changes
 In the base game, luck is stored as a float, but is rounded up to the next integer value when calculating chance effects. This is because the base game simulates each roll using the luck value as a counter.  
 This mod replaces that functionality with a continuous luck function instead.  
 
-<br/>
 ### Math
 #### Positive Luck
 Let's say you have **1 luck** and you want to proc an effect with a **30% chance** *(0.3)*.  
@@ -48,7 +46,6 @@ And similarly, with -0.5 luck:
 </table>
 *TL;DR: Math hocus pocus allows non-integer luck values.*  
 
-<br/>
 ### Mod Compatibility
 If you want to add partial luck to items, characters, etc. you can use this mod to do so. Register it as a dependency for your mod, then when you want to update someone's luck value, use the following code snippet:  
 >`RecalculateStatsAPI.GetStatCoefficients += (sender, args) => {`  

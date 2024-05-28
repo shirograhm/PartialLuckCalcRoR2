@@ -1,6 +1,6 @@
 # PartialLuckPlugin - RoR2
-A library/dependency for [TooManyItems](https://thunderstore.io/package/shirograhm/TooManyItems/). Adds the ability for survivors to have partial luck.
-Supports integration with [LookingGlass](https://thunderstore.io/package/DropPod/LookingGlass/).
+A library/dependency for [TooManyItems](https://thunderstore.io/package/shirograhm/TooManyItems/). Adds the ability for survivors to have partial luck.  
+Supports integration with [LookingGlass](https://thunderstore.io/package/DropPod/LookingGlass/).  
 
 ### Changes
 In the base game, luck is stored as a float, but is rounded up to the next integer value when calculating chance effects. This is because the base game simulates each roll using the luck value as a counter.  
@@ -25,7 +25,7 @@ The equation below is what follows for continuous negative values of luck.
 #### Partial Luck
 Now lets say you have 0.5 luck:  
 `chance of success ⇒ 1 - (1 - 0.3)^(1.4) ⇒ 1 - (0.7)^(1.5) ⇒ 1 - 0.586 ⇒ 0.414 ⇒ 41.4% chance`  
-And similarly, with -0.5 luck:
+And similarly, with -0.5 luck:  
 `chance of success ⇒ (0.3)^(1.5) ⇒ .14 ⇒ 16.4% chance`  
 
 ###### Example Scaling Table
@@ -51,10 +51,10 @@ And similarly, with -0.5 luck:
 *TL;DR: Math hocus pocus allows non-integer luck values.*  
 
 ### Mod Compatibility
-If you want to add partial luck to items, characters, etc. you can use this mod to do so. Register it as a dependency for your mod, then when you want to update someone's luck value, use the following code snippet:
->`RecalculateStatsAPI.GetStatCoefficients += (sender, args) => {`
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`...`
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`PartialLuckTracker tracker = sender.master.gameObject.GetComponent<PartialLuckTracker>();`
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`tracker.PartialLuck += [your partial luck value here];`
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`...`
->`}`
+If you want to add partial luck to items, characters, etc. you can use this mod to do so. Register it as a dependency for your mod, then when you want to update someone's luck value, use the following code snippet:  
+>`RecalculateStatsAPI.GetStatCoefficients += (sender, args) => {`  
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`...`  
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`PartialLuckTracker tracker = sender.master.gameObject.GetComponent<PartialLuckTracker>();`  
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`tracker.PartialLuck += [your partial luck value here];`  
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`...`  
+>`}`  

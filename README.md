@@ -44,6 +44,7 @@ And similarly, with -0.5 luck:
     <td>51%</td>
   </tr>
 </table>
+
 *TL;DR: Math hocus pocus allows non-integer luck values.*  
 
 ### Mod Compatibility

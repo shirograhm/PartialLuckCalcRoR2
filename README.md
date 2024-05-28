@@ -21,9 +21,9 @@ With **-1 luck**, we can follow a similar train of thought: you would have to su
 The equation below is what follows for continuous negative values of luck.  
 `chance of success = (base chance)^(abs(negative luck) + 1)`  
 #### Partial Luck
-Now lets say you have 0.5 luck:  
+Now lets say you have **0.5 luck**:  
 `chance of success ⇒ 1 - (1 - 0.3)^(0.5 + 1) ⇒ 1 - (0.7)^(1.5) ⇒ 1 - 0.586 ⇒ 0.414 ⇒ 41.4% chance`  
-And similarly, with -0.5 luck:  
+And similarly, with **-0.5 luck**:  
 `chance of success ⇒ (0.3)^(abs(-0.5) + 1) ⇒ (0.3)^(1.5) ⇒ .14 ⇒ 16.4% chance`  
 ###### Example Scaling Table
 <table>

@@ -13,5 +13,10 @@ namespace PartialLuckPlugin
 
 			return percent;
 		}
+
+		public static float GetHyperbolicStacking(float percent, int count)
+		{
+			return 1f - 1f / (1f + percent * count);
+		}
 	}
 }

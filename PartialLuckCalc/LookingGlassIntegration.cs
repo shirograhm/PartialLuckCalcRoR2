@@ -2,7 +2,6 @@
 using RoR2;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace PartialLuckPlugin
@@ -72,7 +71,7 @@ namespace PartialLuckPlugin
                     stats.measurementUnits.Add(ItemStatsDef.MeasurementUnits.Percentage);
                     stats.calculateValues = (master, itemCount) =>
                     {
-                        return new List<float> { PartialUtils.GetChanceAfterLuck(.1f * itemCount, master.luck) };
+                        return new List<float> { PartialUtils.GetChanceAfterLuck(0.1f * itemCount, master.luck) };
                     };
                     ItemDefinitions.allItemDefinitions.Add((int)RoR2Content.Items.BleedOnHit.itemIndex, stats);
                 }
@@ -89,7 +88,7 @@ namespace PartialLuckPlugin
                     stats.measurementUnits.Add(ItemStatsDef.MeasurementUnits.Percentage);
                     stats.calculateValues = (master, itemCount) =>
                     {
-                        return new List<float> { PartialUtils.GetChanceAfterLuck(.1f, master.luck), 3 * itemCount };
+                        return new List<float> { PartialUtils.GetChanceAfterLuck(0.1f, master.luck), 3 * itemCount };
                     };
                     ItemDefinitions.allItemDefinitions.Add((int)RoR2Content.Items.Missile.itemIndex, stats);
                 }
@@ -117,7 +116,7 @@ namespace PartialLuckPlugin
                     stats.measurementUnits.Add(ItemStatsDef.MeasurementUnits.Percentage);
                     stats.calculateValues = (master, itemCount) =>
                     {
-                        return new List<float> { PartialUtils.GetChanceAfterLuck(.04f * itemCount, master.luck) };
+                        return new List<float> { PartialUtils.GetChanceAfterLuck(0.04f * itemCount, master.luck) };
                     };
                     ItemDefinitions.allItemDefinitions.Add((int)RoR2Content.Items.BonusGoldPackOnKill.itemIndex, stats);
                 }
@@ -134,7 +133,7 @@ namespace PartialLuckPlugin
                     stats.measurementUnits.Add(ItemStatsDef.MeasurementUnits.Seconds);
                     stats.calculateValues = (master, itemCount) =>
                     {
-                        return new List<float> { PartialUtils.GetChanceAfterLuck(.07f, master.luck), itemCount * 30 };
+                        return new List<float> { PartialUtils.GetChanceAfterLuck(0.07f, master.luck), itemCount * 30 };
                     };
                     ItemDefinitions.allItemDefinitions.Add((int)RoR2Content.Items.GhostOnKill.itemIndex, stats);
                 }
@@ -188,6 +187,54 @@ namespace PartialLuckPlugin
                         return new List<float> { PartialUtils.GetChanceAfterLuck(0.1f, master.luck), itemCount * 5 };
                     };
                     ItemDefinitions.allItemDefinitions.Add((int)RoR2Content.Items.LightningStrikeOnHit.itemIndex, stats);
+                }
+
+                // Needletick
+                if (ItemDefinitions.allItemDefinitions.Remove((int) DLC1Content.Items.BleedOnHitVoid.itemIndex))
+                {
+                    stats = new ItemStatsDef();
+                    stats.descriptions.Add("Collapse Chance: ");
+                    stats.valueTypes.Add(ItemStatsDef.ValueType.Damage);
+                    stats.measurementUnits.Add(ItemStatsDef.MeasurementUnits.Percentage);
+                    stats.calculateValues = (master, itemCount) =>
+                    {
+                        return new List<float> { PartialUtils.GetChanceAfterLuck(0.1f * itemCount, master.luck) };
+                    };
+                    ItemDefinitions.allItemDefinitions.Add((int)DLC1Content.Items.BleedOnHitVoid.itemIndex, stats);
+                }
+
+                // Polylute
+                if (ItemDefinitions.allItemDefinitions.Remove((int)DLC1Content.Items.ChainLightningVoid.itemIndex))
+                {
+                    stats = new ItemStatsDef();
+                    stats.descriptions.Add("Trigger Chance: ");
+                    stats.valueTypes.Add(ItemStatsDef.ValueType.Utility);
+                    stats.measurementUnits.Add(ItemStatsDef.MeasurementUnits.Percentage);
+                    stats.descriptions.Add("Total Hits: ");
+                    stats.valueTypes.Add(ItemStatsDef.ValueType.Damage);
+                    stats.measurementUnits.Add(ItemStatsDef.MeasurementUnits.Number);
+                    stats.calculateValues = (master, itemCount) =>
+                    {
+                        return new List<float> { PartialUtils.GetChanceAfterLuck(0.25f, master.luck), itemCount * 3 };
+                    };
+                    ItemDefinitions.allItemDefinitions.Add((int)DLC1Content.Items.ChainLightningVoid.itemIndex, stats);
+                }
+
+                // Tentabauble
+                if (ItemDefinitions.allItemDefinitions.Remove((int) DLC1Content.Items.SlowOnHitVoid.itemIndex))
+                {
+                    stats = new ItemStatsDef();
+                    stats.descriptions.Add("Root Chance: ");
+                    stats.valueTypes.Add(ItemStatsDef.ValueType.Utility);
+                    stats.measurementUnits.Add(ItemStatsDef.MeasurementUnits.Percentage);
+                    stats.descriptions.Add("Duration: ");
+                    stats.valueTypes.Add(ItemStatsDef.ValueType.Utility);
+                    stats.measurementUnits.Add(ItemStatsDef.MeasurementUnits.Seconds);
+                    stats.calculateValues = (master, itemCount) =>
+                    {
+                        return new List<float> { PartialUtils.GetChanceAfterLuck(PartialUtils.GetHyperbolicStacking(0.05f, itemCount), master.luck), itemCount };
+                    };
+                    ItemDefinitions.allItemDefinitions.Add((int)DLC1Content.Items.SlowOnHitVoid.itemIndex, stats);
                 }
             };
         }

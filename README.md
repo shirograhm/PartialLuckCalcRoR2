@@ -9,14 +9,14 @@ This mod replaces that functionality with a continuous luck function instead.
 ### Math
 #### Positive Luck
 Let's say you have **1 luck** and you want to proc an effect with a **30% chance** (0.3).  
-With 1 luck, you get 1 extra roll, so in order to successfully proc, you would have to "not fail" both rolls.  
+With 1 luck, you get 1 extra roll, so in order to successfully proc, you would have to "not fail" both rolls (failing 1 roll is ok).  
 `chance of failing ⇒ 1 - 0.3 ⇒ 0.7`  
 `chance of failing twice ⇒ 0.7 * 0.7 ⇒ 0.49`  
 `chance of success ⇒ 1 - (chance of failure) ⇒ 1 - 0.49 ⇒ 0.51 ⇒ 51% chance`  
 The equation below is what follows for continuous positive values of luck.  
 `chance of success = 1 - (1 - base chance)^(positive luck + 1)`  
 #### Negative Luck
-With **-1 luck**, we can follow a similar train of thought: you would have to succeed both rolls.  
+With **-1 luck**, we can follow a similar train of thought: you would have to succeed both rolls (failing 1 roll is not ok).  
 `chance of success twice ⇒ 0.3 * 0.3 ⇒ 0.09`  
 The equation below is what follows for continuous negative values of luck.  
 `chance of success = (base chance)^(abs(negative luck) + 1)`  

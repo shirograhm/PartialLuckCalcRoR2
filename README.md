@@ -8,7 +8,7 @@ This mod replaces that functionality with a continuous luck function instead.
 
 ### Math
 #### Positive Luck
-Let's say you have **1 luck** and you want to proc an effect with a **30% chance** *(0.3)*.  
+Let's say you have **1 luck** and you want to proc an effect with a **30% chance** (0.3).  
 With 1 luck, you get 1 extra roll, so in order to successfully proc, you would have to "not fail" both rolls.  
 `chance of failing ⇒ 1 - 0.3 ⇒ 0.7`  
 `chance of failing twice ⇒ 0.7 * 0.7 ⇒ 0.49`  

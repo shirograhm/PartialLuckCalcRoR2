@@ -1,14 +1,19 @@
 using BepInEx;
 using R2API;
 using R2API.Networking;
+using R2API.Utils;
 using RoR2;
 
 namespace PartialLuckPlugin
 {
     // Dependencies
     [BepInDependency(ItemAPI.PluginGUID)]
+    [BepInDependency(RecalculateStatsAPI.PluginGUID)]
+    // Soft Dependencies
     [BepInDependency("com.droppod.lookingglass", BepInDependency.DependencyFlags.SoftDependency)]
-
+    // Compatibility
+    [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
+    
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     public class PartialLuckPlugin : BaseUnityPlugin
     {
@@ -25,10 +30,12 @@ namespace PartialLuckPlugin
         {
             PInfo = Info;
             Log.Init(Logger);
-            
-            partial = new PartialLuckHook();
 
-            ItemCatalog.availability.CallWhenAvailable(LookingGlassIntegration.Init);
+            ItemCatalog.availability.CallWhenAvailable(() => {
+                partial = new PartialLuckHook();
+                LookingGlassIntegration.Init();
+            });
+
             NetworkingAPI.RegisterMessageType<PartialLuckTracker.Sync>();
 
             CharacterMaster.onStartGlobal += (obj) =>

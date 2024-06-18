@@ -38,7 +38,7 @@ namespace PartialLuckPlugin
                 if (ItemDefinitions.allItemDefinitions.Remove((int)RoR2Content.Items.StickyBomb.itemIndex))
                 {
                     stats = new ItemStatsDef();
-                    stats.descriptions.Add("Sticky Bomb Chance: ");
+                    stats.descriptions.Add("Bomb Chance: ");
                     stats.valueTypes.Add(ItemStatsDef.ValueType.Damage);
                     stats.measurementUnits.Add(ItemStatsDef.MeasurementUnits.Percentage);
                     stats.calculateValues = (master, itemCount) =>

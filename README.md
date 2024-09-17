@@ -1,5 +1,5 @@
 # PartialLuckPlugin - RoR2
-A library/dependency for [TooManyItems](https://thunderstore.io/package/shirograhm/TooManyItems/). Adds the ability for survivors to have partial luck.  
+A soft dependency for [TooManyItems](https://thunderstore.io/package/shirograhm/TooManyItems/). Adds the ability for survivors to have partial luck.  
 Supports integration with [LookingGlass](https://thunderstore.io/package/DropPod/LookingGlass/).  
 
 ### Changes
